@@ -1,0 +1,35 @@
+
+/* Basic page design */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3eaff;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Game title */
+h1 {
+    color: #7545a5;
+    font-size: 40px;
+    margin-top: 40px;
+}
+
+/* Game instruction */
+p {
+    color: #8c70a8;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* Main game area */
+.game-container {
+    width: 80%;
+    max-width: 700px;
+    min-height: 300px;
+    margin: 0 auto;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(117, 69, 165, 0.15);
+}
