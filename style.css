@@ -1,4 +1,15 @@
 
+/* Custom Pixel Game Font */
+@font-face {
+    font-family: 'PixelGame';
+    src: url('assets/fonts/PixelGame.ttf') format('truetype');
+}
+
+/* Apply font to the whole game */
+body {
+    font-family: 'PixelGame', sans-serif;
+}
+
 /* Basic page design */
 
 body {
@@ -15,7 +26,7 @@ body {
 
 h1 {
     color: #ffcf70;
-    font-size: 38px;
+    font-size: 100px;
     margin-top: 50px;
     margin-bottom: 30px;
     text-shadow: 5px 5px #a34d9b;
