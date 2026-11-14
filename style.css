@@ -1,19 +1,27 @@
 
 /* Basic page design */
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f3eaff;
+    font-family: 'Press Start 2P', cursive;
+    background-color: #211b3c;
     margin: 0;
-    padding: 0;
+    padding: 30px 15px;
     text-align: center;
+    color: white;
 }
 
+
 /* Game title */
+
 h1 {
-    color: #7545a5;
-    font-size: 40px;
-    margin-top: 40px;
+    color: #ffcf70;
+    font-size: 38px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    text-shadow: 5px 5px #a34d9b;
+    line-height: 1.8;
 }
+
 
 /* Game instruction */
 p {
