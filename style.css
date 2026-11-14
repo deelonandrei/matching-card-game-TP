@@ -1,0 +1,43 @@
+
+/* Basic page design */
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #211b3c;
+    margin: 0;
+    padding: 30px 15px;
+    text-align: center;
+    color: white;
+}
+
+
+/* Game title */
+
+h1 {
+    color: #ffcf70;
+    font-size: 38px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    text-shadow: 5px 5px #a34d9b;
+    line-height: 1.8;
+}
+
+
+/* Game instruction */
+p {
+    color: #8c70a8;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* Main game area */
+.game-container {
+    width: 80%;
+    max-width: 700px;
+    min-height: 300px;
+    margin: 0 auto;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(117, 69, 165, 0.15);
+}
