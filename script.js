@@ -1,14 +1,14 @@
 document.addEventListener("click", function (event) {
 
     const colors = [
-        "#ffd990",
+        "#f9c462",
         "#ff8fab",
-        "#cdb4db",
-        "#a0c4ff",
-        "#b9fbc0"
+        "#cc94ed",
+        "#609dff",
+        "#6af879"
     ];
 
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 24; i++) {
 
         const particle = document.createElement("span");
 
@@ -21,7 +21,7 @@ document.addEventListener("click", function (event) {
             colors[Math.floor(Math.random() * colors.length)];
 
         const angle = (Math.PI * 2 * i) / 12;
-        const distance = 30;
+        const distance = 60;
 
         const x = Math.cos(angle) * distance;
         const y = Math.sin(angle) * distance;
