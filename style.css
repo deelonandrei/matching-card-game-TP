@@ -289,7 +289,7 @@ body.game-started .menu-container {
     display: none;
 }
 
-/* Show game cards after clicking START */
+/* Show game container after starting */
 body.game-started .game-container {
     display: block;
     margin-top: 30px;
@@ -318,5 +318,143 @@ body.game-started .game-container {
     font-size: 40px;
     color: #211b3c;
     cursor: pointer;
+}
+
+/* Start screen fade-out animation */
+.menu-container,
+h1,
+p {
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+/* Fade out start screen */
+body.game-started .menu-container,
+body.game-started h1,
+body.game-started p {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+}
+
+/* Hide start screen after animation */
+body.game-started .menu-container,
+body.game-started h1,
+body.game-started p {
+    visibility: hidden;
+    transition:
+        opacity 1s ease,
+        transform 1s ease,
+        visibility 0s linear 1s;
+}
+
+
+/* Hide cards before the reveal */
+.game-container .card {
+    opacity: 0;
+    transform: scale(0.7);
+}
+
+/* Pop cards after the delay */
+.game-container.show-cards .card {
+    animation: cardPop 0.5s ease-out forwards;
+}
+
+/* Card pop animation */
+@keyframes cardPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    70% {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Make cards appear one by one */
+.game-container.show-cards .card:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.game-container.show-cards .card:nth-child(2) {
+    animation-delay: 0.08s;
+}
+
+.game-container.show-cards .card:nth-child(3) {
+    animation-delay: 0.06s;
+}
+
+.game-container.show-cards .card:nth-child(4) {
+    animation-delay: 0.02s;
+}
+
+.game-container.show-cards .card:nth-child(5) {
+    animation-delay: 0.03s;
+}
+
+.game-container.show-cards .card:nth-child(6) {
+    animation-delay: 0.04s;
+}
+
+.game-container.show-cards .card:nth-child(7) {
+    animation-delay: 0.08s;
+}
+
+.game-container.show-cards .card:nth-child(8) {
+    animation-delay: 0.09s;
+}
+
+.game-container.show-cards .card:nth-child(9) {
+    animation-delay: 0.04s;
+}
+
+.game-container.show-cards .card:nth-child(10) {
+    animation-delay: 0.05s;
+}
+
+.game-container.show-cards .card:nth-child(11) {
+    animation-delay: 0.07s;
+}
+
+.game-container.show-cards .card:nth-child(12) {
+    animation-delay: 0.02s;
+}
+
+
+/* Full screen transition */
+.screen-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: black;
+
+    opacity: 0;
+    visibility: hidden;
+
+    z-index: 99999;
+
+    transition:
+        opacity 1.5s ease-in-out,
+        visibility 0s linear 1.5s;
+}
+
+/* Fade to black */
+.screen-transition.active {
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity 1.5s ease-in-out,
+        visibility 0s;
 }
 

@@ -4,14 +4,51 @@ const backgroundMusic = document.getElementById("backgroundMusic");
 // Start button
 const startButton = document.querySelector(".start-button");
 
+// Screen transition
+const screenTransition = document.getElementById("screenTransition");
+
+// Game container
+const gameContainer = document.querySelector(".game-container");
+
 // Start the game
 startButton.addEventListener("click", () => {
-    document.body.classList.add("game-started");
-});
 
-// Show cards when START is clicked
-startButton.addEventListener("click", () => {
-    gameContainer.style.display = "block";
+    startButton.disabled = true;
+
+    // Fade the entire screen to black
+    screenTransition.classList.add("active");
+
+    // Wait until the black screen transition finishes
+    screenTransition.addEventListener("transitionend", function fadeFinished(event) {
+
+        if (event.propertyName !== "opacity") return;
+
+        screenTransition.removeEventListener("transitionend", fadeFinished);
+
+        // Switch to the game screen
+        document.body.classList.add("game-started");
+
+        // Fade away the black screen
+        screenTransition.classList.remove("active");
+
+        // Wait until the screen is completely visible
+        screenTransition.addEventListener("transitionend", function screenVisible(event) {
+
+            if (event.propertyName !== "opacity") return;
+
+            screenTransition.removeEventListener("transitionend", screenVisible);
+
+            // Wait another 2 seconds before showing the cards
+            setTimeout(() => {
+
+                gameContainer.classList.add("show-cards");
+
+            }, 250);
+
+        });
+
+    });
+
 });
 
 // Play music when the page opens
