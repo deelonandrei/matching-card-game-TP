@@ -15,7 +15,7 @@ startButton.addEventListener("click", () => {
 });
 
 // Play music when the page opens
-backgroundMusic.volume = 50;
+backgroundMusic.volume = 0.5;
 
 backgroundMusic.play().catch(() => {
     // Browser may require the player to interact first
