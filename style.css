@@ -9,8 +9,14 @@
 body {
     font-family: 'PixelGame', sans-serif;
     background-color: #211b3c;
+    background-image: url("wizard-cat-bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     margin: 0;
     padding: 30px 15px;
+    min-height: 100vh;
     text-align: center;
     color: white;
 }
@@ -78,27 +84,153 @@ p {
     }
 }
 
-/* Settings area */
+/* Settings container */
 .settings-container {
     position: fixed;
     bottom: 35px;
     left: 35px;
+    z-index: 1000;
 }
 
 /* Settings button */
 .settings-button {
-    font-size: 28px;
-    background-color: #7763da;
+    width: 58px;
+    height: 58px;
+    font-size: 29px;
     color: white;
-    border: 4px solid white;
-    padding: 12px 16px;
+    background: #563ecd;
+    border: 3px solid #ffffff;
+    border-radius: 14px;
     cursor: pointer;
-    box-shadow: 5px 5px #120e25;
+    box-shadow: 4px 4px #120e25;
+    transition: 0.25s ease;
 }
 
-/* Settings hover effect */
 .settings-button:hover {
-    background-color: #ffd990;
+    background: #765cf5;
+    transform: translateY(-4px);
+}
+
+/* Settings menu */
+.settings-menu {
+    position: absolute;
+    bottom: 75px;
+    left: 0;
+
+    width: 270px;
+    background: #211638;
+    border: 2px solid #6244a8;
+    border-radius: 14px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px) scale(0.96);
+
+    transition: 0.25s ease;
+}
+
+/* Show menu */
+.settings-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}    
+
+/* Header */
+.settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 12px 14px;
+    background: #30204e;
+    border-bottom: 1px solid #6244a8;
+    border-radius: 12px 12px 0 0;
+}
+
+.settings-title {
+    color: #e5d9ff;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* Window buttons */
+.window-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.window-buttons button {
+    width: 25px;
+    height: 25px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.close-button {
+    background: #b64d79;
+}
+
+.window-buttons button:hover {
+    filter: brightness(1.3);
+}
+
+/* Settings content */
+.settings-content {
+    padding: 18px;
+}
+
+/* Sounds label */
+.sound-label {
+    color: #d9c6ff;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin: 0 0 15px;
+}
+
+/* Volume control */
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Plus and minus */
+.volume-control button {
+    width: 28px;
+    height: 28px;
+    background: #48316f;
+    border: 1px solid #805bd0;
+    border-radius: 7px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.volume-control button:hover {
+    background: #7650bd;
+}
+
+/* Volume slider */
+.volume-slider {
+    flex: 1;
+    accent-color: #a47aff;
+    cursor: pointer;
+}
+
+/* Volume percentage */
+.volume-value {
+    color: #c9b2ff;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 12px;
 }
 
 /* Smaller screens */
@@ -139,12 +271,3 @@ p {
     }
 }
 
-body {
-    background-image: url("wizard-cat-bg.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    min-height: 100vh;
-    margin: 0;
-}
