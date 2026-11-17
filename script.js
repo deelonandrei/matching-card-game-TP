@@ -1,9 +1,21 @@
-
 // Background Music
 const backgroundMusic = document.getElementById("backgroundMusic");
 
+// Start button
+const startButton = document.querySelector(".start-button");
+
+// Start the game
+startButton.addEventListener("click", () => {
+    document.body.classList.add("game-started");
+});
+
+// Show cards when START is clicked
+startButton.addEventListener("click", () => {
+    gameContainer.style.display = "block";
+});
+
 // Play music when the page opens
-backgroundMusic.volume = 0.5;
+backgroundMusic.volume = 50;
 
 backgroundMusic.play().catch(() => {
     // Browser may require the player to interact first

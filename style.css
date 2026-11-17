@@ -271,3 +271,47 @@ p {
     }
 }
 
+/* Hide game cards on the start screen */
+.game-container {
+    display: none;
+     margin-top: 40px;
+}
+
+/* Hide title, instructions, and START button after starting */
+body.game-started h1,
+body.game-started p,
+body.game-started .menu-container {
+    display: none;
+}
+
+/* Show game cards after clicking START */
+body.game-started .game-container {
+    display: block;
+    margin-top: 30px;
+}
+
+/* Arrange cards in a 4-column grid */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    gap: 15px;
+    justify-content: center;
+}
+
+/* Individual cards */
+.card {
+    width: 100px;
+    height: 100px;
+    background-color: #ffcf70;
+    border: 4px solid white;
+    box-shadow: 5px 5px #a34d9b;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 40px;
+    color: #211b3c;
+    cursor: pointer;
+}
+
