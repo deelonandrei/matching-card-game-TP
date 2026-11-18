@@ -458,3 +458,28 @@ body.game-started p {
         visibility 0s;
 }
 
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.how-to-play-button {
+    font-family: PixelGame;
+    font-size: 30px;
+    background-color: #ffffff;
+    color: #211b3c;
+    border: 4px solid #ffcf70;
+    padding: 15px 35px;
+    cursor: pointer;
+}
+
+.how-to-play-button:hover {
+    transform: scale(1.05);
+}
+
+.start-button {
+    
+}
