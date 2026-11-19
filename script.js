@@ -1,6 +1,21 @@
 // Background Music
 const backgroundMusic = document.getElementById("backgroundMusic");
 
+const clickSound = new Audio("music/menu-select-fx.mp3");
+
+clickSound.volume = 1;
+
+function playClickSound() {
+
+    clickSound.pause();
+    clickSound.currentTime = 0;
+
+    clickSound.play().catch(error => {
+        console.log("Click sound error:", error);
+    });
+
+}
+
 // Start button
 const startButton = document.querySelector(".start-button");
 
@@ -12,6 +27,8 @@ const gameContainer = document.querySelector(".game-container");
 
 // Start the game
 startButton.addEventListener("click", () => {
+
+    playClickSound();
 
     startButton.disabled = true;
 
@@ -74,11 +91,13 @@ const volumePlus = document.querySelector(".volume-plus");
 
 // Open settings
 settingsToggle.addEventListener("click", () => {
+    playClickSound();
     settingsMenu.classList.toggle("active");
 });
 
 // Close settings
 settingsClose.addEventListener("click", () => {
+    playClickSound();
     settingsMenu.classList.remove("active");
 });
 
@@ -91,14 +110,17 @@ function updateVolume() {
 // Volume slider
 volumeSlider.addEventListener("input", updateVolume);
 
+
 // Decrease volume
 volumeMinus.addEventListener("click", () => {
+    playClickSound();
     volumeSlider.value = Math.max(0, Number(volumeSlider.value) - 10);
     updateVolume();
 });
 
 // Increase volume
 volumePlus.addEventListener("click", () => {
+    playClickSound();
     volumeSlider.value = Math.min(100, Number(volumeSlider.value) + 10);
     updateVolume();
 });
@@ -141,13 +163,16 @@ document.addEventListener("click", function (event) {
         }, 600);
     }
 
-    // How to Play Screen
+});
+
+// How to Play Screen
 const howToPlayButton = document.getElementById("howToPlayButton");
 const howToPlayScreen = document.getElementById("howToPlayScreen");
 const backButton = document.getElementById("backButton");
 
 // Open How to Play
 howToPlayButton.addEventListener("click", function() {
+    playClickSound();
 
     document.body.classList.add("how-to-play-open");
 
@@ -157,6 +182,7 @@ howToPlayButton.addEventListener("click", function() {
 
 // Back to Main Menu
 backButton.addEventListener("click", function() {
+    playClickSound();
 
     document.body.classList.remove("how-to-play-open");
 
@@ -164,4 +190,3 @@ backButton.addEventListener("click", function() {
 
 });
 
-});
