@@ -503,5 +503,49 @@ body.game-started p {
     transform: scale(1.05);
 }
 
+/* How to Play Screen Title */
+.instructions-content h2 {
+    font-size: 55px;
+    margin-bottom: 25px;
+    text-shadow: none;
+}
+
+/* Hide main menu when How to Play is open */
+body.how-to-play-open h1,
+body.how-to-play-open > p,
+body.how-to-play-open .menu-container {
+    display: none;
+}
+
+/* How to Play Screen */
+.how-to-play-screen {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    background-image: url("how-to-play-bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 500;
+}
+
+/* Show treasure map */
+.how-to-play-screen.active {
+    display: flex;
+}
+
+/* Hide main menu when How to Play is open */
+body.how-to-play-open h1,
+body.how-to-play-open > p,
+body.how-to-play-open .menu-container {
+    display: none;
+}
+
 
 

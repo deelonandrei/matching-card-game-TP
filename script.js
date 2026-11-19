@@ -141,4 +141,27 @@ document.addEventListener("click", function (event) {
         }, 600);
     }
 
+    // How to Play Screen
+const howToPlayButton = document.getElementById("howToPlayButton");
+const howToPlayScreen = document.getElementById("howToPlayScreen");
+const backButton = document.getElementById("backButton");
+
+// Open How to Play
+howToPlayButton.addEventListener("click", function() {
+
+    document.body.classList.add("how-to-play-open");
+
+    howToPlayScreen.classList.add("active");
+
+});
+
+// Back to Main Menu
+backButton.addEventListener("click", function() {
+
+    document.body.classList.remove("how-to-play-open");
+
+    howToPlayScreen.classList.remove("active");
+
+});
+
 });
