@@ -224,4 +224,156 @@ gameBackButton.addEventListener("click", function() {
 });
 
 
+// CARD FLIP FUNCTIONALITY
+const cards = document.querySelectorAll(".card");
+
+const symbols = ["🌙", "⭐", "🔮", "🧙", "🐈", "✨"];
+let cardValues = [...symbols, ...symbols];
+
+// Shuffle cards
+cardValues.sort(() => Math.random() - 0.5);
+
+let firstCard = null;
+let secondCard = null;
+let lockBoard = false;
+let matchedPairs = 0;
+
+// Add card flip design
+const flipStyle = document.createElement("style");
+
+flipStyle.textContent = `
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+.card.flipped .card-inner,
+.card.matched .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.card-back {
+    background-image: url("mystic-cat-card-back.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.card-front {
+    transform: rotateY(180deg);
+    background: #482080;
+    border: 4px solid #ffcf70;
+    border-radius: 10px;
+    font-size: 55px;
+}
+
+.card.matched {
+    cursor: default;
+}
+`;
+
+document.head.appendChild(flipStyle);
+
+// Prepare cards
+cards.forEach((card, index) => {
+
+    card.innerHTML = `
+        <div class="card-inner">
+            <div class="card-front">
+                ${cardValues[index]}
+            </div>
+            <div class="card-back"></div>
+        </div>
+    `;
+
+    card.dataset.value = cardValues[index];
+
+    card.addEventListener("click", () => {
+
+        if (
+            lockBoard ||
+            card.classList.contains("flipped") ||
+            card.classList.contains("matched")
+        ) return;
+
+        playClickSound();
+
+        card.classList.add("flipped");
+
+        if (!firstCard) {
+            firstCard = card;
+            return;
+        }
+
+        secondCard = card;
+        lockBoard = true;
+
+        if (firstCard.dataset.value === secondCard.dataset.value) {
+
+            firstCard.classList.add("matched");
+            secondCard.classList.add("matched");
+
+            matchedPairs++;
+
+            resetCards();
+
+            
+if (matchedPairs === 6) {
+    setTimeout(() => {
+        alert("YOU FOUND ALL THE PAIRS! ✨");
+
+        // Reset game
+        matchedPairs = 0;
+
+        // Shuffle cards again
+        cardValues.sort(() => Math.random() - 0.5);
+
+        // Reset every card
+        cards.forEach((card, index) => {
+            card.classList.remove("flipped", "matched");
+            card.dataset.value = cardValues[index];
+
+            card.querySelector(".card-front").textContent = cardValues[index];
+        });
+
+        resetCards();
+
+    }, 500);
+}
+
+
+        } else {
+
+            setTimeout(() => {
+                firstCard.classList.remove("flipped");
+                secondCard.classList.remove("flipped");
+
+                resetCards();
+            }, 1000);
+
+        }
+    });
+});
+
+// Reset selected cards
+function resetCards() {
+    firstCard = null;
+    secondCard = null;
+    lockBoard = false;
+}
+
+
 

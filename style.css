@@ -670,5 +670,19 @@ body.game-started .game-back-button {
     display: flex;
 }
 
+    /* Hide card back when revealed */
+    .card.flipped .card-back,
+    .card.matched .card-back {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    /* Remove old card background */
+    .card {
+        background-image: none !important;
+        background-color: transparent;
+    }
+
+
 
 
