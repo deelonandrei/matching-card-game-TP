@@ -281,7 +281,7 @@ p {
     position: fixed;
     left: 2%;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-57%);
 
     width: 58%;
     max-width: 850px;
@@ -307,40 +307,38 @@ body.game-started .game-container {
     display: flex;
 }
 
-/* Arrange cards inside the wooden table */
+/* Card arrangement inside the wooden table */
 .card-grid {
     display: grid;
 
-    grid-template-columns: repeat(4, 120px);
+    grid-template-columns: repeat(4, 170px);
     grid-template-rows: repeat(3, 160px);
 
-    gap: 12px;
+    column-gap: 18px;
+    row-gap: 18px;
 
     justify-content: center;
     align-content: center;
+    transform: translateY(-1px);
+    transform: translateX(20px);
 }
 
 /* Individual cards */
 .card {
     width: 120px;
     height: 160px;
+
     box-sizing: border-box;
 
-    background-color: transparent;
     background-image: url("mystic-cat-card-back.png");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
 
+    background-color: transparent;
     border: none;
     box-shadow: none;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-size: 50px;
-    color: #211b3c;
     cursor: pointer;
 }
 
@@ -505,11 +503,5 @@ body.game-started p {
     transform: scale(1.05);
 }
 
-/* Card Back Design */
-.card {
-    background-image: url("mystic-cat-card-back.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+
 
