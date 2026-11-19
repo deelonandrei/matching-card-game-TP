@@ -190,3 +190,38 @@ backButton.addEventListener("click", function() {
 
 });
 
+
+// Game Back Button
+const gameBackButton = document.getElementById("gameBackButton");
+
+gameBackButton.addEventListener("click", function() {
+
+    playClickSound();
+
+    // Fade the screen to black
+    screenTransition.classList.add("active");
+
+    screenTransition.addEventListener("transitionend", function backFinished(event) {
+
+        if (event.propertyName !== "opacity") return;
+
+        screenTransition.removeEventListener("transitionend", backFinished);
+
+        // Return to the main menu
+        document.body.classList.remove("game-started");
+
+        // Hide the game cards
+        gameContainer.classList.remove("show-cards");
+
+        // Reset the START button
+        startButton.disabled = false;
+
+        // Fade away the black screen
+        screenTransition.classList.remove("active");
+
+    });
+
+});
+
+
+

@@ -615,4 +615,60 @@ body.how-to-play-open .menu-container {
     transform: scale(1.05);
 }
 
+/* Game Back Button */
+.game-container {
+    position: relative;
+}
+
+/* Game Back Button */
+.game-back-button {
+    position: fixed;
+
+    bottom: -75px;
+    left: 65px; 
+
+    width: 58px;
+    height: 58px;
+
+    background: #563ecd;
+    color: white;
+    box-shadow: 4px 4px #120e25;
+
+    border: 3px solid white;
+    border-radius: 14px;
+
+    font-size: 30px;
+    font-weight: bold;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    z-index: 1000;
+
+    transition: 0.25s ease;
+}
+
+/* Show during gameplay */
+body.game-started .game-back-button {
+    display: flex;
+}
+
+/* Hover */
+.game-back-button:hover {
+    background: #765cf5;
+    transform: translateY(-4px);
+}
+
+/* Hide Game Back Button outside gameplay */
+.game-back-button {
+    display: none;
+}
+
+body.game-started .game-back-button {
+    display: flex;
+}
+
+
 
