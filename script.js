@@ -303,11 +303,21 @@ cards.forEach((card, index) => {
 
     card.addEventListener("click", () => {
 
-        if (
-            lockBoard ||
-            card.classList.contains("flipped") ||
-            card.classList.contains("matched")
-        ) return;
+        
+if (
+    lockBoard ||
+    card.classList.contains("matched")
+) return;
+
+// Peek / Undo feature
+if (card.classList.contains("flipped")) {
+    if (card === firstCard) {
+        card.classList.remove("flipped");
+        firstCard = null;
+    }
+    return;
+}
+
 
         playClickSound();
 
