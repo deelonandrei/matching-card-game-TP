@@ -274,10 +274,26 @@ p {
     }
 }
 
-/* Hide game cards on the start screen */
+/* Wooden Game Board */
 .game-container {
     display: none;
-     margin-top: 40px;
+
+    position: fixed;
+    left: 2%;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 58%;
+    max-width: 850px;
+    height: 600px;
+
+    background-image: url("wooden-game-table.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    justify-content: center;
+    align-items: center;
 }
 
 /* Hide title, instructions, and START button after starting */
@@ -287,24 +303,28 @@ body.game-started .menu-container {
     display: none;
 }
 
-/* Show game container after starting */
 body.game-started .game-container {
-    display: block;
-    margin-top: 30px;
+    display: flex;
 }
 
-/* Arrange cards in a 4-column grid */
+/* Arrange cards inside the wooden table */
 .card-grid {
     display: grid;
+
     grid-template-columns: repeat(4, 120px);
-    gap: 15px;
+    grid-template-rows: repeat(3, 160px);
+
+    gap: 12px;
+
     justify-content: center;
+    align-content: center;
 }
 
 /* Individual cards */
 .card {
     width: 120px;
     height: 160px;
+    box-sizing: border-box;
 
     background-color: transparent;
     background-image: url("mystic-cat-card-back.png");
@@ -313,7 +333,7 @@ body.game-started .game-container {
     background-repeat: no-repeat;
 
     border: none;
-    box-shadow: 5px 5px #a34d9b;
+    box-shadow: none;
 
     display: flex;
     justify-content: center;
