@@ -195,7 +195,7 @@ p {
 /* Sounds label */
 .sound-label {
     color: #d9c6ff;
-    font-size: 13px;
+    font-size: 20px;
     letter-spacing: 2px;
     margin: 0 0 15px;
 }
@@ -480,6 +480,3 @@ body.game-started p {
     transform: scale(1.05);
 }
 
-.start-button {
-    
-}
