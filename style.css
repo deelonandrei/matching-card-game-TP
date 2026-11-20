@@ -308,6 +308,9 @@ body.game-started .game-container {
 
 /* Wooden Table Area */
 .table-area {
+    position: relative;
+    left: -150px;
+    top: -50px;
     width: 850px;
     height: 600px;
 
@@ -635,8 +638,8 @@ body.how-to-play-open .menu-container {
 .game-back-button {
     position: fixed;
 
-    bottom: -75px;
-    left: 65px; 
+    bottom: 35px;
+    left: 110px;     
 
     width: 58px;
     height: 58px;
@@ -836,8 +839,10 @@ body.game-started .game-back-button {
 /* Scoreboard Image */
 .scoreboard-art {
     position: relative;
+    left: -160px;
+    top: -100px;
 
-    width: 260px;
+    width: 300px;
     flex-shrink: 0;
 }
 
