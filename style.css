@@ -798,13 +798,14 @@ body.game-started .game-back-button {
 /* Score Values */
 .score-value,
 .moves-value,
+
 .total-score-value {
     position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
 
     color: white;
-    font-family: monospace;.scoreboard-art
+    font-family: monospace;
     font-size: 25px;
     font-weight: bold;
     text-align: center;

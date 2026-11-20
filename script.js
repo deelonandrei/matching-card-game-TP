@@ -33,6 +33,17 @@ gameMusic.volume = masterVolume;
 const errorSound = new Audio("music/error-card.mp3");
 errorSound.volume = 0.3;
 
+// Meow Sounds
+const meowSounds = [
+    new Audio("music/meow-effect (1).mp3"),
+    new Audio("music/meow-effect (2).mp3")
+];
+
+// Meow volume
+meowSounds.forEach(sound => {
+    sound.volume = 0.5;
+});
+
 // Start button
 const startButton = document.querySelector(".start-button");
 
@@ -350,6 +361,16 @@ cards.forEach((card, index) => {
         // Check if cards match
         if (firstCard.dataset.value === secondCard.dataset.value) {
 
+            // Play a random meow sound
+            const randomMeow = meowSounds[
+                Math.floor(Math.random() * meowSounds.length)
+            ];
+
+            randomMeow.currentTime = 0;
+            randomMeow.play().catch(error => {
+                console.log("Meow sound error:", error);
+            });
+
             firstCard.classList.add("matched");
             secondCard.classList.add("matched");
 
@@ -415,10 +436,10 @@ cards.forEach((card, index) => {
             updateScore(-2);
 
             // Play error sound
-             errorSound.currentTime = 0;
-             errorSound.play().catch(error => {
-                 console.log("Error sound error:", error);
-         });
+            errorSound.currentTime = 0;
+            errorSound.play().catch(error => {
+                console.log("Error sound error:", error);
+            });
 
             const card1 = firstCard;
             const card2 = secondCard;
