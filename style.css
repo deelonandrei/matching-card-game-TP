@@ -274,26 +274,25 @@ p {
     }
 }
 
-/* Wooden Game Board */
+/* Game Container */
 .game-container {
     display: none;
 
     position: fixed;
-    left: 2%;
-    top: 50%;
-    transform: translateY(-57%);
+    inset: 0;
 
-    width: 58%;
-    max-width: 850px;
-    height: 600px;
-
-    background-image: url("wooden-game-table.png");
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
 
     justify-content: center;
     align-items: center;
+
+    transform: none;
+}
+
+/* Show Game */
+body.game-started .game-container {
+    display: flex;
 }
 
 /* Hide title, instructions, and START button after starting */
@@ -307,7 +306,24 @@ body.game-started .game-container {
     display: flex;
 }
 
-/* Card arrangement inside the wooden table */
+/* Wooden Table Area */
+.table-area {
+    width: 850px;
+    height: 600px;
+
+    flex-shrink: 0;
+
+    background-image: url("wooden-game-table.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card Arrangement */
 .card-grid {
     display: grid;
 
@@ -319,8 +335,8 @@ body.game-started .game-container {
 
     justify-content: center;
     align-content: center;
-    transform: translateY(-1px);
-    transform: translateX(20px);
+
+    transform: translate(20px, -1px);
 }
 
 /* Individual cards */
@@ -616,11 +632,6 @@ body.how-to-play-open .menu-container {
 }
 
 /* Game Back Button */
-.game-container {
-    position: relative;
-}
-
-/* Game Back Button */
 .game-back-button {
     position: fixed;
 
@@ -724,11 +735,14 @@ body.game-started .game-back-button {
 }
 
 .card-inner {
-    position: relative;
     width: 100%;
     height: 100%;
+    position: relative;
     transform-style: preserve-3d;
-    transition: transform 0.6s;
+
+    transition: transform 0.30s cubic-bezier(0.22, 0.61, 0.36, 1);
+
+    will-change: transform;
 }
 
 .card.flipped .card-inner {
@@ -770,4 +784,96 @@ body.game-started .game-back-button {
 #score {
     display: inline !important;
     color: #ffcf70 !important;
+}
+
+.scoreboard-art img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Score Values */
+.score-value,
+.moves-value,
+.total-score-value {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    color: white;
+    font-family: monospace;.scoreboard-art
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+
+    text-shadow: 2px 2px 3px black;
+    white-space: nowrap;
+}
+
+/* Position inside scoreboard */
+.score-value {
+    top: 23%;
+}
+
+.moves-value {
+    top: 43.5%;
+}
+
+.total-score-value {
+    top: 58%;
+}
+
+/* Game Layout */
+.game-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 20px;
+    width: auto;
+}
+
+/* Scoreboard Image */
+.scoreboard-art {
+    position: relative;
+
+    width: 260px;
+    flex-shrink: 0;
+}
+
+.scoreboard-art img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Scoreboard Numbers */
+.score-value,
+.moves-value,
+.total-score-value {
+    position: absolute;
+
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    color: white;
+    font-family: 'PixelGame', sans-serif;
+    font-size: 22px;
+
+    text-align: center;
+    white-space: nowrap;
+
+    text-shadow: 2px 2px 3px black;
+}
+
+.score-value {
+    top: 23%;
+}
+
+.moves-value {
+    top: 43.5%;
+}
+
+.total-score-value {
+    top: 58%;
 }

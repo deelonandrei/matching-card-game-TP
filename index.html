@@ -47,38 +47,56 @@
 
 </div>
 
-    <!-- Game Cards --> 
-    <div class="game-container" id="gameScreen">
+    
+<!-- Game Cards -->
+<div class="game-container" id="gameScreen">
 
     <!-- Game Back Button -->
     <button class="game-back-button" id="gameBackButton">
         &#8592;
     </button>
 
-     <!-- Scoreboard -->
-    <div class="scoreboard">
-    <h2>🏆 SCOREBOARD</h2>
-    <p>Score: <span id="score">0</span></p>
-    <p>Moves: <span id="moves">0</span> / 10</p>
-    </div>
+    <div class="game-layout">
 
-        <div class="card-grid">
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
+        <!-- Wooden Card Table -->
+        <div class="table-area">
 
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
+            <div class="card-grid">
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
 
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+            </div>
+
         </div>
+
+        <!-- Pixel Scoreboard -->
+        <div class="scoreboard-art">
+
+            <img src="scoreboard-design.png"
+                 alt="Scoreboard">
+
+            <span class="score-value" id="score">0</span>
+
+            <span class="moves-value" id="moves">0 / 10</span>
+
+            <span class="total-score-value" id="totalScore">0</span>
+
+        </div>
+
     </div>
+</div>
+
    
 <!-- Settings button -->
 <div class="settings-container">
