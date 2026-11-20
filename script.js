@@ -3,6 +3,12 @@ const backgroundMusic = document.getElementById("backgroundMusic");
 
 const clickSound = new Audio("music/menu-select-fx.mp3");
 
+// Second Background Music (Gameplay)
+const gameMusic = new Audio("music/background-sec-song.mp3");
+
+gameMusic.loop = true;
+gameMusic.volume = 0.5;
+
 clickSound.volume = 1;
 
 function playClickSound() {
@@ -15,6 +21,14 @@ function playClickSound() {
     });
 
 }
+
+// Master Volume
+let masterVolume = 0.5;
+
+// Apply volume to both songs
+backgroundMusic.volume = masterVolume;
+gameMusic.volume = masterVolume;
+
 
 // Start button
 const startButton = document.querySelector(".start-button");
@@ -31,6 +45,16 @@ startButton.addEventListener("click", () => {
     playClickSound();
 
     startButton.disabled = true;
+
+     // Stop menu music
+    backgroundMusic.pause();
+    backgroundMusic.currentTime = 0;
+
+    // Play second background music
+    gameMusic.currentTime = 0;
+    gameMusic.play().catch(error => {
+        console.log("Game music error:", error);
+    });
 
     // Fade the entire screen to black
     screenTransition.classList.add("active");
@@ -107,9 +131,14 @@ function updateVolume() {
     volumeValue.textContent = volumeSlider.value + "%";
 }
 
-// Volume slider
-volumeSlider.addEventListener("input", updateVolume);
+volumeSlider.addEventListener("input", function() {
 
+    masterVolume = volumeSlider.value / 100;
+
+    backgroundMusic.volume = masterVolume;
+    gameMusic.volume = masterVolume;
+
+});
 
 // Decrease volume
 volumeMinus.addEventListener("click", () => {
@@ -216,6 +245,16 @@ gameBackButton.addEventListener("click", function() {
         // Reset the START button
         startButton.disabled = false;
 
+        // Stop gameplay music
+        gameMusic.pause();
+        gameMusic.currentTime = 0;
+
+        // Play main menu music
+        backgroundMusic.currentTime = 0;
+        backgroundMusic.play().catch(error => {
+            console.log("Menu music error:", error);
+        });
+
         // Fade away the black screen
         screenTransition.classList.remove("active");
 
@@ -250,54 +289,6 @@ function updateScore(points) {
     scoreDisplay.textContent = score;
 }
 
-// Add card flip design
-const flipStyle = document.createElement("style");
-
-flipStyle.textContent = `
-.card-inner {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.6s ease;
-}
-
-.card.flipped .card-inner,
-.card.matched .card-inner {
-    transform: rotateY(180deg);
-}
-
-.card-front,
-.card-back {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-}
-
-.card-back {
-    background-image: url("mystic-cat-card-back.png");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-}
-
-.card-front {
-    transform: rotateY(180deg);
-    background: #482080;
-    border: 4px solid #ffcf70;
-    border-radius: 10px;
-    font-size: 55px;
-}
-
-.card.matched {
-    cursor: default;
-}
-`;
-
-document.head.appendChild(flipStyle);
 
 // Prepare cards
 cards.forEach((card, index) => {
@@ -315,105 +306,139 @@ cards.forEach((card, index) => {
 
     card.addEventListener("click", () => {
 
-        
-if (
-    lockBoard ||
-    card.classList.contains("matched")
-) return;
-
-
-
-        playClickSound();
-
-        card.classList.add("flipped");
-
-        if (!firstCard) {
-            firstCard = card;
+        // Prevent invalid clicks
+        if (
+            lockBoard ||
+            card.classList.contains("matched")
+        ) {
             return;
         }
 
+        playClickSound();
+
+        // Click the same card again to flip it down
+        if (card === firstCard) {
+
+            card.classList.remove("flipped");
+            firstCard = null;
+
+            return;
+        }
+
+        // Flip card face-up
+        card.classList.add("flipped");
+
+        // Select first card
+        if (!firstCard) {
+
+            firstCard = card;
+            return;
+
+        }
+
+        // Select second card
         secondCard = card;
+
         moves++;
         movesDisplay.textContent = moves;
+
         lockBoard = true;
 
+        // Check if cards match
         if (firstCard.dataset.value === secondCard.dataset.value) {
 
             firstCard.classList.add("matched");
             secondCard.classList.add("matched");
 
             matchedPairs++;
+
             updateScore(10);
 
+            // Reset selected cards
             resetCards();
 
-            
-if (matchedPairs === 6) {
-    setTimeout(() => {
+            // Check if all pairs are matched
+            if (matchedPairs === 6) {
 
-    if (moves <= 10) {
-    updateScore(10);
-}   
-    else {
-    updateScore(-10);
-}
-        alert(
-    "YOU FOUND ALL THE PAIRS! ✨\n" +
-    "Total Moves: " + moves + "\n" +
-    "Final Score: " + score
-);
+                lockBoard = true;
 
-        // Reset game
-        matchedPairs = 0;
+                setTimeout(() => {
 
-        score = 0;
-        scoreDisplay.textContent = score;
+                    if (moves <= 10) {
+                        updateScore(10);
+                    } else {
+                        updateScore(-10);
+                    }
 
-        moves = 0;
-        movesDisplay.textContent = moves;
-        
+                    alert(
+                        "YOU FOUND ALL THE PAIRS! ✨\n" +
+                        "Total Moves: " + moves + "\n" +
+                        "Final Score: " + score
+                    );
 
-        // Shuffle cards again
-        cardValues.sort(() => Math.random() - 0.5);
+                    // Reset game
+                    matchedPairs = 0;
 
-        // Reset every card
-        cards.forEach((card, index) => {
-            card.classList.remove("flipped", "matched");
-            card.dataset.value = cardValues[index];
+                    score = 0;
+                    scoreDisplay.textContent = score;
 
-            card.querySelector(".card-front").textContent = cardValues[index];
-        });
+                    moves = 0;
+                    movesDisplay.textContent = moves;
 
-        resetCards();
+                    // Shuffle cards again
+                    cardValues.sort(() => Math.random() - 0.5);
 
-    }, 500);
-}
+                    // Reset every card
+                    cards.forEach((card, index) => {
 
+                        card.classList.remove("flipped", "matched");
 
-       } else {
-    updateScore(-2);
+                        card.dataset.value = cardValues[index];
 
-    const card1 = firstCard;
-    const card2 = secondCard;
+                        card.querySelector(".card-front").textContent =
+                            cardValues[index];
 
-    setTimeout(() => {
-        card1.classList.remove("flipped");
-        card2.classList.remove("flipped");
+                    });
 
-        console.log("Cards flipped back!");
+                    resetCards();
 
-        resetCards();
-    }, 1000);
-}
+                }, 500);
+
+            }
+
+        } else {
+
+            // Wrong pair
+            updateScore(-2);
+
+            const card1 = firstCard;
+            const card2 = secondCard;
+
+            setTimeout(() => {
+
+                // Flip both cards face-down
+                card1.classList.remove("flipped");
+                card2.classList.remove("flipped");
+
+                resetCards();
+
+            }, 1000);
+
+        }
 
     });
+
 });
+
 
 // Reset selected cards
 function resetCards() {
+
     firstCard = null;
     secondCard = null;
     lockBoard = false;
+
 }
+
 
 
