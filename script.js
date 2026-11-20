@@ -238,6 +238,18 @@ let secondCard = null;
 let lockBoard = false;
 let matchedPairs = 0;
 
+// SCOREBOARD
+let score = 0;
+const scoreDisplay = document.getElementById("score");
+
+let moves = 0;
+const movesDisplay = document.getElementById("moves");
+
+function updateScore(points) {
+    score += points;
+    scoreDisplay.textContent = score;
+}
+
 // Add card flip design
 const flipStyle = document.createElement("style");
 
@@ -309,14 +321,6 @@ if (
     card.classList.contains("matched")
 ) return;
 
-// Peek / Undo feature
-if (card.classList.contains("flipped")) {
-    if (card === firstCard) {
-        card.classList.remove("flipped");
-        firstCard = null;
-    }
-    return;
-}
 
 
         playClickSound();
@@ -329,6 +333,8 @@ if (card.classList.contains("flipped")) {
         }
 
         secondCard = card;
+        moves++;
+        movesDisplay.textContent = moves;
         lockBoard = true;
 
         if (firstCard.dataset.value === secondCard.dataset.value) {
@@ -337,16 +343,35 @@ if (card.classList.contains("flipped")) {
             secondCard.classList.add("matched");
 
             matchedPairs++;
+            updateScore(10);
 
             resetCards();
 
             
 if (matchedPairs === 6) {
     setTimeout(() => {
-        alert("YOU FOUND ALL THE PAIRS! ✨");
+
+    if (moves <= 10) {
+    updateScore(10);
+}   
+    else {
+    updateScore(-10);
+}
+        alert(
+    "YOU FOUND ALL THE PAIRS! ✨\n" +
+    "Total Moves: " + moves + "\n" +
+    "Final Score: " + score
+);
 
         // Reset game
         matchedPairs = 0;
+
+        score = 0;
+        scoreDisplay.textContent = score;
+
+        moves = 0;
+        movesDisplay.textContent = moves;
+        
 
         // Shuffle cards again
         cardValues.sort(() => Math.random() - 0.5);
@@ -365,16 +390,22 @@ if (matchedPairs === 6) {
 }
 
 
-        } else {
+       } else {
+    updateScore(-2);
 
-            setTimeout(() => {
-                firstCard.classList.remove("flipped");
-                secondCard.classList.remove("flipped");
+    const card1 = firstCard;
+    const card2 = secondCard;
 
-                resetCards();
-            }, 1000);
+    setTimeout(() => {
+        card1.classList.remove("flipped");
+        card2.classList.remove("flipped");
 
-        }
+        console.log("Cards flipped back!");
+
+        resetCards();
+    }, 1000);
+}
+
     });
 });
 
@@ -384,6 +415,5 @@ function resetCards() {
     secondCard = null;
     lockBoard = false;
 }
-
 
 
