@@ -29,6 +29,9 @@ let masterVolume = 0.5;
 backgroundMusic.volume = masterVolume;
 gameMusic.volume = masterVolume;
 
+// Error Sound
+const errorSound = new Audio("music/error-card.mp3");
+errorSound.volume = 0.3;
 
 // Start button
 const startButton = document.querySelector(".start-button");
@@ -410,6 +413,12 @@ cards.forEach((card, index) => {
 
             // Wrong pair
             updateScore(-2);
+
+            // Play error sound
+             errorSound.currentTime = 0;
+             errorSound.play().catch(error => {
+                 console.log("Error sound error:", error);
+         });
 
             const card1 = firstCard;
             const card2 = secondCard;
