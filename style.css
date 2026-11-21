@@ -439,7 +439,7 @@ body.game-started p {
 }
 
 .game-container.show-cards .card:nth-child(2) {
-    animation-delay: 0.08s;
+    animation-delay: 0.18s;
 }
 
 .game-container.show-cards .card:nth-child(3) {
@@ -447,27 +447,27 @@ body.game-started p {
 }
 
 .game-container.show-cards .card:nth-child(4) {
-    animation-delay: 0.02s;
+    animation-delay: 0.24s;
 }
 
 .game-container.show-cards .card:nth-child(5) {
-    animation-delay: 0.03s;
+    animation-delay: 0.12s;
 }
 
 .game-container.show-cards .card:nth-child(6) {
-    animation-delay: 0.04s;
+    animation-delay: 0.30s;
 }
 
 .game-container.show-cards .card:nth-child(7) {
-    animation-delay: 0.08s;
+    animation-delay: 0.03s;
 }
 
 .game-container.show-cards .card:nth-child(8) {
-    animation-delay: 0.09s;
+    animation-delay: 0.21s;
 }
 
 .game-container.show-cards .card:nth-child(9) {
-    animation-delay: 0.04s;
+    animation-delay: 0.09s;
 }
 
 .game-container.show-cards .card:nth-child(10) {
@@ -475,11 +475,11 @@ body.game-started p {
 }
 
 .game-container.show-cards .card:nth-child(11) {
-    animation-delay: 0.07s;
+    animation-delay: 0.27s;
 }
 
 .game-container.show-cards .card:nth-child(12) {
-    animation-delay: 0.02s;
+    animation-delay: 0.09s;
 }
 
 

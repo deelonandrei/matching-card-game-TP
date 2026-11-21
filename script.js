@@ -2,6 +2,21 @@
 const backgroundMusic = document.getElementById("backgroundMusic");
 
 const clickSound = new Audio("music/menu-select-fx.mp3");
+clickSound.volume = 0.5;
+
+// Card appearance sound
+const cardAppearSound = new Audio("music/card-appear.mp3");
+cardAppearSound.volume = 1;
+
+// Play card appearance sound
+function playCardAppearSound() {
+
+    const sound = cardAppearSound.cloneNode();
+
+    sound.volume = 0.35;
+    sound.play();
+
+}
 
 // Second Background Music (Gameplay)
 const gameMusic = new Audio("music/background-sec-song.mp3");
@@ -112,6 +127,31 @@ startButton.addEventListener("click", () => {
 
                 gameContainer.classList.add("show-cards");
 
+                // Match sound timing with CSS animation delays
+                const cardSoundDelays = [
+                    0.00,
+                    0.18,
+                    0.06,
+                    0.24,
+                    0.12,
+                    0.30,
+                    0.03,
+                    0.21,
+                    0.09,
+                    0.05,
+                    0.27,
+                    0.09
+            ];
+
+            // Play sound when each card appears
+                cardSoundDelays.forEach((delay) => {
+
+                    setTimeout(() => {
+                    playCardAppearSound();
+            }, delay * 1000);
+
+});
+
             }, 250);
 
         });
@@ -166,11 +206,6 @@ volumeSlider.addEventListener("input", function() {
     backgroundMusic.volume = masterVolume;
     gameMusic.volume = masterVolume;
 
-});
-
-// Move volume slider
-volumeSlider.addEventListener("input", function() {
-    updateVolume();
 });
 
 // Decrease volume
