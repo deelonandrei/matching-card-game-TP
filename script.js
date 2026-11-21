@@ -66,9 +66,61 @@ const startButton = document.querySelector(".start-button");
 const restartButton = document.getElementById("restartButton");
 const nextLevelButton = document.getElementById("nextLevelButton");
 
-// Restart Button Sound
+// Restart Button
 restartButton.addEventListener("click", () => {
+
     playClickSound();
+
+    // Reset score and moves
+    score = 0;
+    moves = 0;
+    matchedPairs = 0;
+
+    scoreDisplay.textContent = score;
+    movesDisplay.textContent = moves;
+    totalScoreDisplay.textContent = 0;
+
+    // Reset lives
+    lives = 9;
+    updateLivesDisplay();
+
+    // Shuffle cards
+    cardValues.sort(() => Math.random() - 0.5);
+
+    // Flip all cards down first
+    cards.forEach(card => {
+    card.classList.remove("matched");
+    card.classList.add("flipped");
+    });
+
+    // Wait for the flip animation
+    setTimeout(() => {
+
+    // Shuffle cards
+    cardValues.sort(() => Math.random() - 0.5);
+
+    // Update card values
+    cards.forEach((card, index) => {
+
+        card.dataset.value = cardValues[index];
+
+        card.querySelector(".card-front").textContent =
+            cardValues[index];
+
+        card.classList.remove("flipped");
+
+    });
+
+    resetCards();
+
+    }, 600);
+
+    // Reset selected cards
+    resetCards();
+
+    // Show cards again
+    gameContainer.classList.add("show-cards");
+
 });
 
 // Next Level Button Sound
@@ -344,6 +396,34 @@ let firstCard = null;
 let secondCard = null;
 let lockBoard = false;
 let matchedPairs = 0;
+let lives = 9;
+
+
+// PIXEL HEARTS
+const livesDisplay = document.createElement("div");
+livesDisplay.classList.add("lives-display");
+
+document.querySelector(".scoreboard-art").appendChild(livesDisplay);
+
+// Display remaining hearts
+function updateLivesDisplay() {
+    livesDisplay.innerHTML = "";
+
+    for (let i = 0; i < 9; i++) {
+        const heart = document.createElement("span");
+
+        heart.classList.add("pixel-heart");
+
+        if (i >= lives) {
+            heart.classList.add("lost");
+        }
+
+        heart.textContent = "♥";
+        livesDisplay.appendChild(heart);
+    }
+}
+
+updateLivesDisplay();
 
 // SCOREBOARD
 let score = 0;
@@ -453,6 +533,8 @@ cards.forEach((card, index) => {
 
                     // Reset game
                     matchedPairs = 0;
+                    lives = 9;
+                    updateLivesDisplay();
 
                     score = 0;
                     scoreDisplay.textContent = score;
@@ -483,6 +565,9 @@ cards.forEach((card, index) => {
 
         } else {
 
+            lives--;
+            updateLivesDisplay();
+
             // Wrong pair
             updateScore(-2);
 
@@ -500,6 +585,16 @@ cards.forEach((card, index) => {
                 // Flip both cards face-down
                 card1.classList.remove("flipped");
                 card2.classList.remove("flipped");
+
+                if (lives <= 0) {
+                 alert("GAME OVER! You ran out of lives.");
+                
+                 lives = 9;
+                updateLivesDisplay();
+
+                resetCards();
+                return;
+            }
 
                 resetCards();
 
