@@ -1021,3 +1021,25 @@ body.game-started .game-back-button {
     color: #51405c;
     opacity: 0.4;
 }
+
+/* Level Display */
+.level-display {
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-family: 'PixelGame', sans-serif;
+    font-size: 35px;
+    font-weight: bold;
+
+    color: #ffcf70;
+    text-shadow: 4px 4px #000000;
+
+    z-index: 100;
+}
+
+.next-level-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

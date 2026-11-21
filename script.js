@@ -125,7 +125,53 @@ restartButton.addEventListener("click", () => {
 
 // Next Level Button Sound
 nextLevelButton.addEventListener("click", () => {
+
     playClickSound();
+
+    if (!levelCompleted) return;
+
+    if (currentLevel === maxLevel) {
+        alert("CONGRATULATIONS! YOU COMPLETED ALL 5 LEVELS!");
+        nextLevelButton.disabled = true;
+        nextLevelButton.textContent = "COMPLETED";
+        return;
+    }
+
+    // Go to next level
+    currentLevel++;
+    levelDisplay.textContent = "LEVEL " + currentLevel;
+
+    // Reset level status
+    levelCompleted = false;
+    nextLevelButton.disabled = true;
+
+    // Reset score, moves, and lives
+    score = 0;
+    scoreDisplay.textContent = 0;
+    totalScoreDisplay.textContent = 0;
+
+    moves = 0;
+    movesDisplay.textContent = moves;
+
+    matchedPairs = 0;
+    lives = 9;
+    updateLivesDisplay();
+
+    // Shuffle cards
+    cardValues.sort(() => Math.random() - 0.5);
+
+    // Reset every card
+    cards.forEach((card, index) => {
+        card.classList.remove("flipped", "matched");
+
+        card.dataset.value = cardValues[index];
+
+        card.querySelector(".card-front").textContent =
+            cardValues[index];
+    });
+
+    resetCards();
+
 });
 
 // Screen transition
@@ -389,6 +435,15 @@ const cards = document.querySelectorAll(".card");
 const symbols = ["🌙", "⭐", "🔮", "🧙", "🐈", "✨"];
 let cardValues = [...symbols, ...symbols];
 
+let currentLevel = 1;
+const maxLevel = 5;
+
+const levelDisplay = document.getElementById("levelDisplay");
+
+let levelCompleted = false;
+
+nextLevelButton.disabled = true;
+
 // Shuffle cards
 cardValues.sort(() => Math.random() - 0.5);
 
@@ -469,6 +524,10 @@ cards.forEach((card, index) => {
         if (card === firstCard) {
 
             card.classList.remove("flipped");
+
+            moves++;
+            movesDisplay.textContent = moves;
+
             firstCard = null;
 
             return;
@@ -516,52 +575,26 @@ cards.forEach((card, index) => {
             // Reset selected cards
             resetCards();
 
-            if (matchedPairs === 6) {
+    if (matchedPairs === 6) {
 
-            lockBoard = true;
+    lockBoard = true;
 
-            setTimeout(() => {
+    setTimeout(() => {
 
-            if (moves <= 10) {
-                updateScore(10);
-            } else {
-                updateScore(-10);
-            }
+        if (moves <= 10) {
+            updateScore(10);
+        } else {
+            updateScore(-10);
+        }
 
-             // Show final score on the scoreboard
-            totalScoreDisplay.textContent = score;
+        totalScoreDisplay.textContent = score;
 
-                    // Reset game
-                    matchedPairs = 0;
-                    lives = 9;
-                    updateLivesDisplay();
+        levelCompleted = true;
+        nextLevelButton.disabled = false;
 
-                    score = 0;
-                    scoreDisplay.textContent = score;
+    }, 500);
 
-                    moves = 0;
-                    movesDisplay.textContent = moves;
-
-                    // Shuffle cards again
-                    cardValues.sort(() => Math.random() - 0.5);
-
-                    // Reset every card
-                    cards.forEach((card, index) => {
-
-                        card.classList.remove("flipped", "matched");
-
-                        card.dataset.value = cardValues[index];
-
-                        card.querySelector(".card-front").textContent =
-                            cardValues[index];
-
-                    });
-
-                    resetCards();
-
-                }, 500);
-
-            }
+        }
 
         } else {
 
@@ -585,6 +618,7 @@ cards.forEach((card, index) => {
                 // Flip both cards face-down
                 card1.classList.remove("flipped");
                 card2.classList.remove("flipped");
+
 
                 if (lives <= 0) {
                  alert("GAME OVER! You ran out of lives.");
