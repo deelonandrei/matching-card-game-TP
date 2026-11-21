@@ -9,7 +9,7 @@ const gameMusic = new Audio("music/background-sec-song.mp3");
 gameMusic.loop = true;
 gameMusic.volume = 0.5;
 
-clickSound.volume = 1;
+clickSound.volume = 0.5;
 
 function playClickSound() {
 
@@ -46,6 +46,20 @@ meowSounds.forEach(sound => {
 
 // Start button
 const startButton = document.querySelector(".start-button");
+
+// Restart and Next Level Buttons
+const restartButton = document.getElementById("restartButton");
+const nextLevelButton = document.getElementById("nextLevelButton");
+
+// Restart Button Sound
+restartButton.addEventListener("click", () => {
+    playClickSound();
+});
+
+// Next Level Button Sound
+nextLevelButton.addEventListener("click", () => {
+    playClickSound();
+});
 
 // Screen transition
 const screenTransition = document.getElementById("screenTransition");
@@ -152,6 +166,11 @@ volumeSlider.addEventListener("input", function() {
     backgroundMusic.volume = masterVolume;
     gameMusic.volume = masterVolume;
 
+});
+
+// Move volume slider
+volumeSlider.addEventListener("input", function() {
+    updateVolume();
 });
 
 // Decrease volume
@@ -294,6 +313,7 @@ let matchedPairs = 0;
 // SCOREBOARD
 let score = 0;
 const scoreDisplay = document.getElementById("score");
+const totalScoreDisplay = document.getElementById("totalScore");
 
 let moves = 0;
 const movesDisplay = document.getElementById("moves");
@@ -381,24 +401,20 @@ cards.forEach((card, index) => {
             // Reset selected cards
             resetCards();
 
-            // Check if all pairs are matched
             if (matchedPairs === 6) {
 
-                lockBoard = true;
+            lockBoard = true;
 
-                setTimeout(() => {
+            setTimeout(() => {
 
-                    if (moves <= 10) {
-                        updateScore(10);
-                    } else {
-                        updateScore(-10);
-                    }
+            if (moves <= 10) {
+                updateScore(10);
+            } else {
+                updateScore(-10);
+            }
 
-                    alert(
-                        "YOU FOUND ALL THE PAIRS! ✨\n" +
-                        "Total Moves: " + moves + "\n" +
-                        "Final Score: " + score
-                    );
+             // Show final score on the scoreboard
+            totalScoreDisplay.textContent = score;
 
                     // Reset game
                     matchedPairs = 0;

@@ -33,7 +33,7 @@
 
             <p>1. Find two cards with matching pictures.</p>
             <p>2. Remember the pictures you've seen!</p>
-            <p>3. Watch out for the Boss! Every 10 levels, the Boss shuffles the cards every 10 seconds!</p>
+            <p>3. Watch out for Boss fights! Every 10 levels, Different Bosses appears!</p>
             <p>4. Enjoy the game :D</p>
         </div>
 
@@ -80,24 +80,38 @@
 
         </div>
 
-        <!-- Pixel Scoreboard -->
-        <div class="scoreboard-art">
+        <!-- Scoreboard and Game Controls -->
+<div class="scoreboard-container">
 
-            <img src="scoreboard-design.png"
-                 alt="Scoreboard">
+    <!-- Pixel Scoreboard -->
+    <div class="scoreboard-art">
 
-            <span class="score-value" id="score">0</span>
+        <img src="scoreboard-design.png"
+             alt="Scoreboard">
 
-            <span class="moves-value" id="moves">0 / 10</span>
+        <span class="score-value" id="score">0</span>
 
-            <span class="total-score-value" id="totalScore">0</span>
+        <span class="moves-value" id="moves">0 / 10</span>
 
-        </div>
+        <span class="total-score-value" id="totalScore">0</span>
 
     </div>
+
+    <!-- Game Buttons -->
+    <div class="game-controls">
+
+        <button class="restart-button" id="restartButton">
+            RESTART
+        </button>
+
+        <button class="next-level-button" id="nextLevelButton">
+            NEXT LEVEL
+        </button>
+
+    </div>
+
 </div>
 
-   
 <!-- Settings button -->
 <div class="settings-container">
 
@@ -106,12 +120,13 @@
     </button>
 
     <!-- Background Music -->
-<audio id="backgroundMusic" loop>
-    <source src="music/A Lonely Cherry Tree 🌸.mp3" type="audio/mpeg">
-</audio>
+    <audio id="backgroundMusic" loop>
+        <source src="music/A Lonely Cherry Tree 🌸.mp3" type="audio/mpeg">
+    </audio>
 
     <!-- Settings Menu -->
     <div class="settings-menu" id="settingsMenu">
+
         <div class="settings-header">
             <span class="settings-title">SETTINGS</span>
 
@@ -144,11 +159,10 @@
             <div class="volume-value">50%</div>
 
         </div>
-
     </div>
 </div>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>

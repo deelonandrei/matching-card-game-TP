@@ -236,6 +236,21 @@ p {
     margin-top: 12px;
 }
 
+.volume-icon {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    font-size: 24px;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: relative;
+    z-index: 10;
+}
+
 /* Smaller screens */
 @media (max-width: 600px) {
     h1 {
@@ -882,4 +897,61 @@ body.game-started .game-back-button {
 
 .total-score-value {
     top: 58%;
+}
+
+/* Scoreboard and Game Controls */
+.scoreboard-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Game Buttons Layout */
+.game-controls {
+    position: absolute;
+
+    bottom: 158px;
+    left: 8%;
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    width: 75%;
+}
+
+/* Restart and Next Level Buttons */
+.restart-button,
+.next-level-button {
+    width: 70%;
+    padding: 5px;
+
+    font-family: monospace;
+    font-size: 15px;
+    font-weight: bold;
+
+    color: white;
+    background: #b960f8;
+
+    border: 3px solid #ffb7ff;
+    border-radius: 12px;
+
+    box-shadow: 0 5px 0 #35105e;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.restart-button:hover,
+.next-level-button:hover {
+    background: #a34aff;
+    transform: translateY(-3px);
+}
+
+.restart-button:active,
+.next-level-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #35105e;
 }
