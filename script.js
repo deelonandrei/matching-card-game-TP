@@ -484,28 +484,44 @@ let lockBoard = false;
 let matchedPairs = 0;
 let lives = 9;
 
-
-// PIXEL HEARTS
+// PIXEL FISH LIVES
 const livesDisplay = document.createElement("div");
 livesDisplay.classList.add("lives-display");
 
-document.querySelector(".scoreboard-art").appendChild(livesDisplay);
+const fishContainer = document.createElement("div");
+fishContainer.classList.add("fish-container");
 
-// Display remaining hearts
+livesDisplay.appendChild(fishContainer);
+
+const scoreboard = document.querySelector(".scoreboard-art");
+
+// Create healthbar background
+const healthbarBg = document.createElement("div");
+healthbarBg.classList.add("healthbar-bg");
+
+scoreboard.appendChild(healthbarBg);
+
+// Add lives display
+scoreboard.appendChild(livesDisplay);
+
+// Display remaining fish lives
 function updateLivesDisplay() {
-    livesDisplay.innerHTML = "";
+    fishContainer.innerHTML = "";
 
     for (let i = 0; i < 9; i++) {
-        const heart = document.createElement("span");
+        const fish = document.createElement("img");
 
-        heart.classList.add("pixel-heart");
+        fish.classList.add("pixel-heart");
 
         if (i >= lives) {
-            heart.classList.add("lost");
+            fish.src = "images/fish-bone-hp.png";
+        } else {
+            fish.src = "images/fish-healthbar.png";
         }
 
-        heart.textContent = "♥";
-        livesDisplay.appendChild(heart);
+        fish.alt = i >= lives ? "Lost life" : "Remaining life";
+
+        fishContainer.appendChild(fish);
     }
 }
 

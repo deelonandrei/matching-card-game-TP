@@ -851,7 +851,7 @@ body.game-started .game-back-button {
     flex-shrink: 0;
 }
 
-.scoreboard-art img {
+.scoreboard-art > img {
     display: block;
     width: 100%;
     height: auto;
@@ -945,70 +945,59 @@ body.game-started .game-back-button {
     box-shadow: 0 2px 0 #35105e;
 }
 
-/* PIXEL HEART LIVES */
+/* PIXEL FISH LIVES */
 .lives-display {
     position: absolute;
-    top: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-
-    display: flex;
-    gap: 12px;
-
-    z-index: 20;
-}
-
-
-/* PIXEL HEART LIVES */
-.lives-display {
-    position: absolute;
-    top: -35px;
+    top: 555px;
     right: 30px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
+    width: 120px;
+    height: 100px;
 
-    padding: 10px 18px;
-
-    /* Pixelated purple background */
-    background-color: #30204e;
-    background-image:
-        repeating-linear-gradient(
-            0deg,
-            transparent 0px,
-            transparent 7px,
-            rgba(255,255,255,0.04) 7px,
-            rgba(255,255,255,0.04) 8px
-        ),
-        repeating-linear-gradient(
-            90deg,
-            transparent 0px,
-            transparent 7px,
-            rgba(255,255,255,0.04) 7px,
-            rgba(255,255,255,0.04) 8px
-        );
-
-    border: 4px solid #ffcf70;
-    box-shadow: 5px 5px #120e25;
+    background-image: url("health-bar.webp");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 
     z-index: 100;
 }
 
-.pixel-heart {
-    font-family: 'PixelGame', monospace;
-    font-size: 32px;
-    color: #ff4f85;
+/* HEALTHBAR BACKGROUND */
+.healthbar-bg {
+    position: absolute;
+    top: 555px;
+    right: 555px;
 
-    text-shadow: 3px 3px #8d2455;
+    width: 120px;
+    height: 100px;
 
-    transition: 0.2s;
+    background-image: url("health-bar.webp");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    z-index: 100;
 }
 
-.pixel-heart.lost {
-    color: #51405c;
-    opacity: 0.4;
+/* PIXEL FISH LIVES */
+.lives-display {
+    position: absolute;
+    top: 555px;
+    right: 30px;
+
+    width: 120px;
+    height: 100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 101;
+}
+
+/* PIXEL HEARTS */
+.pixel-heart {
+    width: 5px;
+    height: 5px;
+    object-fit: contain;
 }
 
 /* Level Display */
