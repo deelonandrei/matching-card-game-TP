@@ -102,10 +102,7 @@ restartButton.addEventListener("click", () => {
     // Update card values
     cards.forEach((card, index) => {
 
-        card.dataset.value = cardValues[index];
-
-        card.querySelector(".card-front").textContent =
-            cardValues[index];
+        updateCardPicture(card, cardValues[index]);
 
         card.classList.remove("flipped");
 
@@ -164,10 +161,7 @@ nextLevelButton.addEventListener("click", () => {
     cards.forEach((card, index) => {
         card.classList.remove("flipped", "matched");
 
-        card.dataset.value = cardValues[index];
-
-        card.querySelector(".card-front").textContent =
-            cardValues[index];
+        updateCardPicture(card, cardValues[index]);
     });
 
     resetCards();
@@ -432,8 +426,86 @@ gameBackButton.addEventListener("click", function() {
 // CARD FLIP FUNCTIONALITY
 const cards = document.querySelectorAll(".card");
 
-const symbols = ["🌙", "⭐", "🔮", "🧙", "🐈", "✨"];
+// CARD PICTURES
+const cardImages = {
+    cat1: "images/crystalball-card.png",
+    cat2: "images/magicpot-card.png",
+    cat3: "images/potion-card.webp",
+    cat4: "images/spellbook-card.png",
+    cat5: "images/staff-card.png",
+    cat6: "images/wizardcat-card.png"
+};
+
+// Duplicate each picture to create matching pairs
+const symbols = Object.keys(cardImages);
 let cardValues = [...symbols, ...symbols];
+
+// Shuffle cards
+cardValues.sort(() => Math.random() - 0.5);
+
+// Display the card picture
+function updateCardPicture(card, value) {
+    card.dataset.value = value;
+
+    const front = card.querySelector(".card-front");
+
+    front.style.display = "flex";
+    front.style.justifyContent = "center";
+    front.style.alignItems = "center";
+    front.style.overflow = "hidden";
+
+    front.innerHTML = `
+        <img src="${cardImages[value]}" alt="${value}">
+    `;
+
+    const image = front.querySelector("img");
+
+    // Default image size
+    image.style.width = "100%";
+    image.style.height = "100%";
+    image.style.objectFit = "fill";
+    image.style.display = "block";
+
+    // Keep the image inside the rounded card edges
+    const cardFront = card.querySelector(".card-front");
+
+    cardFront.style.overflow = "hidden";
+    cardFront.style.borderRadius = "10px";  
+
+    image.style.borderRadius = "10px";
+
+    // Individual card picture sizes
+    if (value === "crystalball") {
+        image.style.width = "80%";
+        image.style.height = "80%";
+        image.style.objectFit = "contain";
+    }
+
+    else if (value === "magicpot") {
+        image.style.width = "100%";
+        image.style.height = "100%";
+    }
+
+    else if (value === "potion") {
+        image.style.width = "95%";
+        image.style.height = "95%";
+    }
+
+    else if (value === "spellbook") {
+        image.style.width = "100%";
+        image.style.height = "100%";
+    }
+
+    else if (value === "staff") {
+        image.style.width = "100%";
+        image.style.height = "100%";
+    }
+
+    else if (value === "wizardcat") {
+        image.style.width = "100%";
+        image.style.height = "100%";
+    }
+}
 
 let currentLevel = 1;
 const maxLevel = 5;
@@ -499,14 +571,12 @@ cards.forEach((card, index) => {
 
     card.innerHTML = `
         <div class="card-inner">
-            <div class="card-front">
-                ${cardValues[index]}
-            </div>
+            <div class="card-front"></div>
             <div class="card-back"></div>
         </div>
     `;
 
-    card.dataset.value = cardValues[index];
+    updateCardPicture(card, cardValues[index]);
 
     card.addEventListener("click", () => {
 
