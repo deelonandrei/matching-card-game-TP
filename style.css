@@ -48,11 +48,6 @@ p {
         3px 3px 5px rgba(0, 0, 0, 0.8);
 }
 
-/* Start button area */
-.menu-container {
-    margin-top: 50px;
-}
-
 /* Start button */
 .start-button {
     font-family: 'PixelGame', sans-serif;
@@ -802,12 +797,6 @@ body.game-started .game-back-button {
 #score {
     display: inline !important;
     color: #ffcf70 !important;
-}
-
-.scoreboard-art img {
-    display: block;
-    width: 100%;
-    height: auto;
 }
 
 /* Score Values */
