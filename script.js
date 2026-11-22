@@ -24,8 +24,6 @@ const gameMusic = new Audio("music/background-sec-song.mp3");
 gameMusic.loop = true;
 gameMusic.volume = 0.5;
 
-clickSound.volume = 0.5;
-
 function playClickSound() {
 
     clickSound.pause();
@@ -84,9 +82,6 @@ restartButton.addEventListener("click", () => {
     lives = 9;
     updateLivesDisplay();
 
-    // Shuffle cards
-    cardValues.sort(() => Math.random() - 0.5);
-
     // Flip all cards down first
     cards.forEach(card => {
     card.classList.remove("matched");
@@ -111,9 +106,6 @@ restartButton.addEventListener("click", () => {
     resetCards();
 
     }, 600);
-
-    // Reset selected cards
-    resetCards();
 
     // Show cards again
     gameContainer.classList.add("show-cards");
@@ -253,8 +245,6 @@ startButton.addEventListener("click", () => {
 });
 
 // Play music when the page opens
-backgroundMusic.volume = 0.5;
-
 backgroundMusic.play().catch(() => {
     // Browser may require the player to interact first
     document.addEventListener("click", function startMusic() {
@@ -449,11 +439,6 @@ function updateCardPicture(card, value) {
 
     const front = card.querySelector(".card-front");
 
-    front.style.display = "flex";
-    front.style.justifyContent = "center";
-    front.style.alignItems = "center";
-    front.style.overflow = "hidden";
-
     front.innerHTML = `
         <img src="${cardImages[value]}" alt="${value}">
     `;
@@ -463,27 +448,17 @@ function updateCardPicture(card, value) {
     // Default image size
     image.style.width = "100%";
     image.style.height = "100%";
-    image.style.objectFit = "fill";
-    image.style.display = "block";
-
-    // Keep the image inside the rounded card edges
-    const cardFront = card.querySelector(".card-front");
-
-    cardFront.style.overflow = "hidden";
-    cardFront.style.borderRadius = "10px";  
-
-    image.style.borderRadius = "10px";
+    image.style.objectFit = "contain";
 
     // Individual card picture sizes
     if (value === "crystalball") {
         image.style.width = "80%";
         image.style.height = "80%";
-        image.style.objectFit = "contain";
     }
 
     else if (value === "magicpot") {
-        image.style.width = "100%";
-        image.style.height = "100%";
+        image.style.width = "10%";
+        image.style.height = "10%";
     }
 
     else if (value === "potion") {
@@ -491,20 +466,6 @@ function updateCardPicture(card, value) {
         image.style.height = "95%";
     }
 
-    else if (value === "spellbook") {
-        image.style.width = "100%";
-        image.style.height = "100%";
-    }
-
-    else if (value === "staff") {
-        image.style.width = "100%";
-        image.style.height = "100%";
-    }
-
-    else if (value === "wizardcat") {
-        image.style.width = "100%";
-        image.style.height = "100%";
-    }
 }
 
 let currentLevel = 1;
@@ -513,8 +474,6 @@ const maxLevel = 5;
 const levelDisplay = document.getElementById("levelDisplay");
 
 let levelCompleted = false;
-
-nextLevelButton.disabled = true;
 
 // Shuffle cards
 cardValues.sort(() => Math.random() - 0.5);
