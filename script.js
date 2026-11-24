@@ -658,6 +658,46 @@ cards.forEach((card, index) => {
 
         updateScore(-2);
 
+    if (lives <= 0) {
+        setTimeout(() => {
+
+        alert("No more lives! Restarting current level.");
+
+        // Reset level status
+        levelCompleted = false;
+        nextLevelButton.disabled = true;
+
+         // Reset score, moves, and lives
+        score = 0;
+        scoreDisplay.textContent = 0;
+        totalScoreDisplay.textContent = 0;
+
+        moves = 0;
+        updateMovesDisplay();
+
+        matchedPairs = 0;
+        lives = 9;
+        updateLivesDisplay();
+
+        // Reset selected cards and board
+        firstCard = null;
+        secondCard = null;
+        lockBoard = false;
+
+        // Shuffle cards
+        cardValues.sort(() => Math.random() - 0.5);
+
+        // Reset every card
+        cards.forEach((card, index) => {
+        card.classList.remove("flipped", "matched");
+        updateCardPicture(card, cardValues[index]);
+        });
+
+        } , 500);
+
+        return;
+    }
+
             // Play error sound
             errorSound.currentTime = 0;
             errorSound.play().catch(error => {
