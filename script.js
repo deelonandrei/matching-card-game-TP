@@ -432,7 +432,7 @@ const cards = document.querySelectorAll(".card");
 const cardImages = {
     cat1: "images/crystalball-card.png",
     cat2: "images/magicpot-card.png",
-    cat3: "images/potion-card.webp",
+    cat3: "images/potion-card.png",
     cat4: "images/spellbook-card.png",
     cat5: "images/staff-card.png",
     cat6: "images/wizardcat-card.png"
