@@ -87,7 +87,7 @@ restartButton.addEventListener("click", () => {
     matchedPairs = 0;
 
     scoreDisplay.textContent = score;
-    movesDisplay.textContent = moves;
+    updateMovesDisplay();
     totalScoreDisplay.textContent = 0;
 
     // Reset lives
@@ -152,7 +152,7 @@ nextLevelButton.addEventListener("click", () => {
     totalScoreDisplay.textContent = 0;
 
     moves = 0;
-    movesDisplay.textContent = moves;
+    updateMovesDisplay();
 
     matchedPairs = 0;
     lives = 9;
@@ -535,6 +535,12 @@ const totalScoreDisplay = document.getElementById("totalScore");
 let moves = 0;
 const movesDisplay = document.getElementById("moves");
 
+const maxMoves = 15;
+
+function updateMovesDisplay() {
+    movesDisplay.textContent = `${moves}/${maxMoves}`;
+}
+
 function updateScore(points) {
     score += points;
     scoreDisplay.textContent = score;
@@ -571,7 +577,7 @@ cards.forEach((card, index) => {
             card.classList.remove("flipped");
 
             moves++;
-            movesDisplay.textContent = moves;
+            updateMovesDisplay();
 
             firstCard = null;
 
@@ -593,7 +599,7 @@ cards.forEach((card, index) => {
         secondCard = card;
 
         moves++;
-        movesDisplay.textContent = moves;
+        updateMovesDisplay();
 
         lockBoard = true;
 
@@ -626,7 +632,7 @@ cards.forEach((card, index) => {
 
     setTimeout(() => {
 
-        if (moves <= 10) {
+        if (moves <= 15) {
             updateScore(10);
         } else {
             updateScore(-10);
