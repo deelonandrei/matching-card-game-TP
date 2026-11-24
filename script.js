@@ -598,9 +598,6 @@ cards.forEach((card, index) => {
         // Select second card
         secondCard = card;
 
-        moves++;
-        updateMovesDisplay();
-
         lockBoard = true;
 
         // Check if cards match
@@ -651,6 +648,9 @@ cards.forEach((card, index) => {
 }
 
         } else {
+
+        moves++;
+        updateMovesDisplay();
 
         // Wrong pair: lose 1 life
         lives--;
