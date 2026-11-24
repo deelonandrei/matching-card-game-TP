@@ -18,6 +18,18 @@ function playCardAppearSound() {
 
 }
 
+// Victory Sound
+const victorySound = new Audio("music/victory-sound.mp3");
+victorySound.volume = 0.7;
+
+function playVictorySound() {
+    victorySound.currentTime = 0;
+
+    victorySound.play().catch(error => {
+        console.log("Victory sound error:", error);
+    });
+}
+
 // Second Background Music (Gameplay)
 const gameMusic = new Audio("music/background-sec-song.mp3");
 
@@ -622,12 +634,15 @@ cards.forEach((card, index) => {
 
         totalScoreDisplay.textContent = score;
 
+        // Play victory sound
+        playVictorySound();
+
         levelCompleted = true;
         nextLevelButton.disabled = false;
 
     }, 500);
 
-        }
+}
 
         } else {
 
