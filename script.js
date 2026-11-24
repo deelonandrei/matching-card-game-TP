@@ -485,24 +485,12 @@ let matchedPairs = 0;
 let lives = 9;
 
 // PIXEL FISH LIVES
-const livesDisplay = document.createElement("div");
-livesDisplay.classList.add("lives-display");
+const livesDisplay = document.getElementById("livesDisplay");
 
 const fishContainer = document.createElement("div");
 fishContainer.classList.add("fish-container");
 
 livesDisplay.appendChild(fishContainer);
-
-const scoreboard = document.querySelector(".scoreboard-art");
-
-// Create healthbar background
-const healthbarBg = document.createElement("div");
-healthbarBg.classList.add("healthbar-bg");
-
-scoreboard.appendChild(healthbarBg);
-
-// Add lives display
-scoreboard.appendChild(livesDisplay);
 
 // Display remaining fish lives
 function updateLivesDisplay() {
@@ -643,11 +631,11 @@ cards.forEach((card, index) => {
 
         } else {
 
-            lives--;
-            updateLivesDisplay();
+        // Wrong pair: lose 1 life
+        lives--;
+        updateLivesDisplay();
 
-            // Wrong pair
-            updateScore(-2);
+        updateScore(-2);
 
             // Play error sound
             errorSound.currentTime = 0;

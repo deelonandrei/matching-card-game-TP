@@ -321,8 +321,8 @@ body.game-started .game-container {
     position: relative;
     left: -150px;
     top: -50px;
-    width: 850px;
-    height: 600px;
+    width: 820px;
+    height: 580px;
 
     flex-shrink: 0;
 
@@ -945,34 +945,22 @@ body.game-started .game-back-button {
     box-shadow: 0 2px 0 #35105e;
 }
 
-/* PIXEL FISH LIVES */
-.lives-display {
-    position: absolute;
-    top: 555px;
-    right: 30px;
-
-    width: 120px;
-    height: 100px;
-
-    background-image: url("health-bar.webp");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-
-    z-index: 100;
+/* HEALTH BAR BACKGROUND */
+.health-background {
+    width: 800px;
+    height: 280px;
+    object-fit: fill;
+    display: block;
 }
 
-/* HEALTHBAR BACKGROUND */
-.healthbar-bg {
+/* HEALTH BAR CONTAINER */
+.health-container {
     position: absolute;
-    top: 555px;
-    right: 555px;
+    top: 380px;
+    right: 500px;
 
-    width: 120px;
-    height: 100px;
-
-    background-image: url("health-bar.webp");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    width: 630px;
+    height: 250px;
 
     z-index: 100;
 }
@@ -980,11 +968,11 @@ body.game-started .game-back-button {
 /* PIXEL FISH LIVES */
 .lives-display {
     position: absolute;
-    top: 555px;
-    right: 30px;
+    top: 20px;
+    left: 90px;
 
-    width: 120px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
 
     display: flex;
     justify-content: center;
@@ -993,27 +981,67 @@ body.game-started .game-back-button {
     z-index: 101;
 }
 
-/* PIXEL HEARTS */
+/* FISH CONTAINER */
+.fish-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    gap: 10px;
+    padding: 0;
+
+    position: relative;
+    top: 0px;
+    left: 0px;
+
+    box-sizing: border-box;
+}
+
+/* FISH HEALTH IMAGES */
 .pixel-heart {
-    width: 5px;
-    height: 5px;
+    width: 150px;
+    height: 200px;
     object-fit: contain;
 }
 
-/* Level Display */
+.pixel-heart:not(:last-child) {
+    margin-right: -88px;
+}
+
+/* LEVEL BOARD */
 .level-display {
     position: absolute;
-    top: 35px;
-    left: 50%;
-    transform: translateX(-50%);
 
+    /* POSITION */
+    top: 490px;
+    left: 948px;
+
+    /* SIZE */
+    width: 150px;
+    padding: 13px 0;
+
+    /* BOARD DESIGN */
+    background: #350a66;
+    border: 3px solid #ffcf70;
+    border-radius: 10px;
+
+    box-shadow:
+    0 5px 0 #1b1038,
+    0 0 10px rgba(255, 207, 112, 0.3);
+
+    /* TEXT */
     font-family: 'PixelGame', sans-serif;
-    font-size: 35px;
+    font-size: 25px;
     font-weight: bold;
-
     color: #ffcf70;
-    text-shadow: 4px 4px #000000;
 
+    text-align: center;
+    text-shadow: 3px 3px #000000;
+
+    box-sizing: border-box;
     z-index: 100;
 }
 
