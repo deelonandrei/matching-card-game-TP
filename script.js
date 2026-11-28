@@ -20,7 +20,7 @@ function playCardAppearSound() {
 
 // Victory Sound
 const victorySound = new Audio("music/victory-sound.mp3");
-victorySound.volume = 0.10;
+victorySound.volume = 1;
 
 function playVictorySound() {
     victorySound.currentTime = 0;

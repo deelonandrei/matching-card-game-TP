@@ -1103,3 +1103,39 @@ body.game-started .game-back-button {
     object-fit: fill;
     image-rendering: pixelated;
 }
+
+/* LEVEL COMPLETION MESSAGE */
+.victory-message {
+    font-family: 'PixelGame', sans-serif;
+    font-size: 120px;
+    color: #ffe27a;
+
+    text-align: center;
+
+    /* TEXT SHADOW */
+    text-shadow:
+        3px 3px 0 #000000,
+        5px 5px 0 #1d1233;
+
+    /* BOX DESIGN */
+    background: #39265c;
+    border: 5px solid #d9ae62;
+    border-radius: 8px;
+
+    padding: 10px 45px;
+
+    /* BOX SHADOW */
+    box-shadow:
+        0 0 0 5px #211638,
+        0 0 0 9px #8c65bd,
+        6px 6px 0 #140e25;
+
+    /* POSITION */
+    position: absolute;
+    top: 43%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+
+    z-index: 100;
+    white-space: nowrap;
+}
