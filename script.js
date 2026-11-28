@@ -75,11 +75,15 @@ const startButton = document.querySelector(".start-button");
 // Restart and Next Level Buttons
 const restartButton = document.getElementById("restartButton");
 const nextLevelButton = document.getElementById("nextLevelButton");
+const victoryMessage = document.getElementById("victoryMessage");
+
+victoryMessage.style.display = "none";
 
 // Restart Button
 restartButton.addEventListener("click", () => {
 
     playClickSound();
+    victoryMessage.style.display = "none";
 
     // Reset score and moves
     score = 0;
@@ -642,6 +646,16 @@ cards.forEach((card, index) => {
 
         levelCompleted = true;
         nextLevelButton.disabled = false;
+
+        if (currentLevel >= 1 && currentLevel <= 4) {
+        victoryMessage.style.display = "block";
+
+        setTimeout(() => {
+        victoryMessage.style.display = "none";
+        nextLevelButton.click();
+         }, 3000);
+        }
+        
 
     }, 500);
 
